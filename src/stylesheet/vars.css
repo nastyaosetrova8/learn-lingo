@@ -1,0 +1,21 @@
+:root {
+    /* background */
+    --main-background: #FFFFFF;
+    --second-background: #F8F8F8;
+    
+    /* text colors */
+    --main-text-color: #121417;
+    --second-text-color: #8A8A89;
+    --text-color-70: #121417b3;
+
+    /* colors */
+    --yellow-color: #F4C550;
+    --light-yellow-color: #FBE9BA;
+    --button-second-yellow-color: #FFDC86;
+    --green-color: #9FBAAE;
+    --light-green-color: #CBDED3;
+    --blue-color: #9FB7CE;
+    --light-blue-color: #BFD6EA;
+    --red-color: #E0A39A;
+    --light-red-color: #F2C0BD;
+}
