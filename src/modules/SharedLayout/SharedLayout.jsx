@@ -1,8 +1,8 @@
-import  {AppBar}  from "components/AppBar/AppBar";
+import AppBar from "../AppBar";
 import { Outlet } from "react-router-dom";
 // import { useAuth } from "hooks/useAuth";
 
-export const Layout = () => {
+const SharedLayout = () => {
   // const { isLoggedIn } = useAuth();
 
   return (
@@ -12,3 +12,5 @@ export const Layout = () => {
     </div>
   );
 };
+
+export default SharedLayout;

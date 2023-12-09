@@ -1,14 +1,14 @@
 // import logo from './logo.svg';
 // import './App.css';
 
-import { Suspense, lazy } from 'react';
+import { Suspense} from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { SharedLayout } from './SharedLayout/SharedLayout';
+import SharedLayout from './modules/SharedLayout/SharedLayout';
 import 'react-toastify/dist/ReactToastify.css';
-import Loader from './Loader/Loader';
+import Loader from './shared/components/Loader/Loader';
 
-const Home = lazy(() => import('../Pages/Home/Home'));
-const Teachers = lazy(() => import('../Pages/Catalog'));
+// const Home = lazy(() => import('../Pages/Home'));
+// const Teachers = lazy(() => import('../Pages/Teachers'));
 // const Favorites = lazy(() => import('../Pages/Favorites'));
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
-            <Route path="/catalog" element={<Teachers />} />
+            {/* <Route index element={<Home />} />
+            <Route path="/catalog" element={<Teachers />} /> */}
             {/* <Route path="/favorite" element={<PrivateRoute><Favorites /></PrivateRoute>} /> */}
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
