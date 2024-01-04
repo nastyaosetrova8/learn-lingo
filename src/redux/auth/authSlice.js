@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authSignUpUser, authSignInUser, authSingOutUser } from './operations';
 import { notifyLoginSuccess, notifyRegisterError } from '../../shared/NotificationToastify/Toasts';
+import { logOutUser, loginUser, registerUser } from './authThunks';
 
 const initialState = {
   userId: null,
@@ -24,21 +24,21 @@ export const authSlice = createSlice({
   },
   extraReducers: builder =>
     builder
-      .addCase(authSignUpUser.fulfilled, (state, { payload }) => {
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
         state.userId = payload.uid;
         state.nickname = payload.displayName;
         state.email = payload.mail;
       })
-      .addCase(authSignUpUser.rejected, (error) => {
+      .addCase(registerUser.rejected, (error) => {
         notifyRegisterError(error);
       })
-      .addCase(authSignInUser.fulfilled, (data) => {
+      .addCase(loginUser.fulfilled, (data) => {
         notifyLoginSuccess(data)
       })
-      .addCase(authSignInUser.rejected, (error) => {
+      .addCase(loginUser.rejected, (error) => {
         notifyRegisterError(error);
       })
-      .addCase(authSingOutUser.fulfilled, state => {
+      .addCase(logOutUser.fulfilled, state => {
         state.userId = null;
         state.nickname = null;
         state.email = null;

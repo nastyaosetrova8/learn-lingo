@@ -1,16 +1,29 @@
 // import { useAuth } from "hooks/useAuth";
-import { Header } from "./AppBarStyled";
-
+import FlagIcon from "../../shared/components/FlagIcon/FlagIcon";
+import { Header, LogoStyled, LogoTextStyled } from "./AppBarStyled";
+import Navigation from "./components/Navigation/Navigation";
+import AuthNav from "./components/AuthNav/AuthNav";
+import { useMediaQuery } from "react-responsive";
+import MobileNavigation from "./components/MobileNavigation/MobileNavigation";
 
 const AppBar = () => {
-    // const { isLoggedIn } = useAuth();
-  
-    return (
-      <Header>
-        {/* <Navigation />
-        {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
-      </Header>
-    );
-  };
+  // const { isAuth } = useAuth();
 
-  export default AppBar;
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
+  return (
+    <Header>
+      <LogoStyled to="/">
+        <FlagIcon />
+        <LogoTextStyled>LearnLingo</LogoTextStyled>
+      </LogoStyled>
+      {!isMobile && <Navigation />}
+
+      {/* {isAuth ? <UserMenu /> : <AuthNav />} */}
+
+      {isMobile ? <MobileNavigation /> : <AuthNav />}
+    </Header>
+  );
+};
+
+export default AppBar;

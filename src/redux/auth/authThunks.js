@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { auth } from '../firebase/config';
+import { auth } from '../../firebase/config';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth';
 
 
-export const authSignUpUser = createAsyncThunk(
+export const registerUser = createAsyncThunk(
   'auth/signUpUser',
   async ({ email, password, login }, thunkApi) => {
     try {
@@ -24,7 +24,7 @@ export const authSignUpUser = createAsyncThunk(
   }
 );
 
-export const authSignInUser = createAsyncThunk(
+export const loginUser = createAsyncThunk(
   'auth/signInUser',
   async ({ email, password }, thunkApi) => {
     try {
@@ -35,7 +35,7 @@ export const authSignInUser = createAsyncThunk(
   }
 );
 
-export const authSingOutUser = createAsyncThunk(
+export const logOutUser = createAsyncThunk(
   'auth/singOutUser',
   async (_, thunkApi) => {
     try {
