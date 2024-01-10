@@ -1,24 +1,24 @@
-// import logo from './logo.svg';
 import './App.css';
-
+import PrivateRoute from "../src/Guard/PrivateRoute";
 import { Suspense, lazy} from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from './modules/SharedLayout/SharedLayout';
 import Loader from './shared/components/Loader/Loader';
+import NotificationToast from './shared/NotificationToastify/NotificationToast';
 
-const Home = lazy(() => import('./Pages/Home/Home'));
-const Teachers = lazy(() => import('./Pages/Teachers/Teachers'));
-const Favorites = lazy(() => import('./Pages/Favorites/Favorites'));
+const Home = lazy(() => import('./pages/Home/Home'));
+const Teachers = lazy(() => import('./pages/Teachers/Teachers'));
+const Favorites = lazy(() => import('./pages/Favorites/Favorites'));
 
 function App() {
 
   // const dispatch = useDispatch();
-  // const token = useSelector(selectIsAuth);
+  // const isAuth = useAuth();
 
   // useEffect(() => {
-  //   if (!token) return;
+  //   if (!isAuth) return;
   //   dispatch(currentUserThunk());
-  // }, [dispatch, token]);
+  // }, [dispatch, isAuth]);
 
   return (
     <>
@@ -27,11 +27,12 @@ function App() {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
             <Route path="/teachers" element={<Teachers />} />
-            {/* <Route path="/favorite" element={<PrivateRoute><Favorites /></PrivateRoute>} /> */}
+            <Route path="/favorites" element={<PrivateRoute><Favorites /></PrivateRoute>} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
+      <NotificationToast />
     </>
   );
 }

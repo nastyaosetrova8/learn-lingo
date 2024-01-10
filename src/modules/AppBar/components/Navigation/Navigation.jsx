@@ -1,4 +1,4 @@
-// import { useAuth } from "hooks/useAuth";
+import useAuth from "../../../../hooks/useAuth";
 import {
   NavContainerStyled,
   NavLinkStyled,
@@ -6,14 +6,14 @@ import {
 } from "./NavigationStyled";
 
 const Navigation = () => {
-  //   const { isAuth } = useAuth();
+    const { isAuth } = useAuth();
 
   return (
     <NavContainerStyled>
       <NavStyled>
         <NavLinkStyled to="/">Home</NavLinkStyled>
         <NavLinkStyled to="/teachers">Teachers</NavLinkStyled>
-        {/* {isAuth && <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>} */}
+        {isAuth && <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>}
       </NavStyled>
     </NavContainerStyled>
   );

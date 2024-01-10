@@ -11,53 +11,19 @@ export const StyledModal = styled.div`
   align-items: center;
   flex-direction: column;
   max-width: 474px;
+  padding: 64px 64px;
   width: 100%;
-  padding: 60px 80px;
-  border: 1px solid var(--text-color-30);
+  border: 1px solid var(--green-color);
   border-radius: 20px;
-  background-color: var(--second-background);
-
-  @media screen and (max-width: 768px) {
-    max-width: 335px;
-    padding: 40px 20px;
-  }
+  background-color: var(--light-green-color);
 `;
 
-// export const StyledCloseBtn = styled.button`
-//   position: absolute;
-//   top: 24px;
-//   right: 24px;
-//   width: 28px;
-//   height: 28px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background-color: transparent;
-//   border: none;
-//   cursor: pointer;
-
-//   @media screen and (max-width: 768px) {
-//     width: 24px;
-//     height: 24px;
-//     top: 16px;
-//     right: 16px;
-//   }
-// `;
-
-
-// ================================
-
-export const AuthTitle = styled.h2`
-  align-self: flex-start;
-  font-size: 24px;
-  font-family: "GilroyBold";
-  line-height: 1.3;
-  color: var(--text-color-100);
-
-  @media screen and (max-width: 768px) {
-    font-size: 20px;
-    line-height: 1.4;
-  }
+export const ModalTitle = styled.h2`
+  align-self: center;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--main-text-color);
 `;
 
 export const FormStyled = styled.form`
@@ -69,14 +35,10 @@ export const InputsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  row-gap: 14px;
+  row-gap: 18px;
   margin-top: 32px;
   margin-bottom: 32px;
   width: 100%;
-
-  @media screen and (max-width: 768px) {
-    max-width: 295px;
-  }
 `;
 
 export const InputPasswWrapStyled = styled.div`
@@ -85,11 +47,11 @@ export const InputPasswWrapStyled = styled.div`
 `;
 
 export const LuEyeStyled = styled(LuEye)`
-  color: var(--text-color-100);
+  color: var(--main-text-color);
 `;
 
 export const LuEyeOffStyled = styled(LuEyeOff)`
-  color: var(--text-color-100);
+  color: var(--main-text-color);
 `;
 
 export const BtnEyeStyled = styled.button`
@@ -111,5 +73,26 @@ export const ErrorsStyled = styled.div`
   margin: 0 0;
   font-size: 12px;
   line-height: 1.1;
-  color: var(--pink-color);
+  color: var(--red-color);
+`;
+
+export const SubmitBtnStyled = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 32px;
+  padding: 16px 48px;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: var(--green-color);
+  border-radius: 12px;
+  transform: scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.03);
+  }
 `;

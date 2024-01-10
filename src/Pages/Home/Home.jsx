@@ -2,9 +2,11 @@ import React from "react";
 import homeImg from "../../shared/img/homeImg.jpg";
 import { BtnStartStyled, ContentHomeWrapStyled, ImgHomeWrapStyled, StyledHomeContainer, TextStyled, TitleStyled, StyledMainWrap, TitleWrap, TextWrap } from "./HomeStyled";
 import HomeStatisticSection from "../../modules/HomeStatisticSection/HomeStatisticSection";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
+
   return (
     <StyledHomeContainer>
       <StyledMainWrap>
@@ -21,7 +23,7 @@ const Home = () => {
           highly qualified and experienced tutors.
         </TextStyled>
         </TextWrap>
-        <BtnStartStyled>Get started</BtnStartStyled>
+        <Link to="/teachers"><BtnStartStyled type="button">Get started</BtnStartStyled></Link>
       </ContentHomeWrapStyled>
 
       <ImgHomeWrapStyled>

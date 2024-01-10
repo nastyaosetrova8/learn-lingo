@@ -1,18 +1,22 @@
 import styled from "styled-components";
 
 export const StatisticSectionStyled = styled.div`
-/* display: flex; */
-/* align-items: center; */
-/* justify-content: space-between; */
-padding: 40px 123px;
+/* padding: 40px 123px; */
+max-width: 1440px;
+padding-top: 40px;
+padding-bottom: 40px;
 border: 1.5px dashed var(--green-color);
 border-radius: 30px;
 `;
 
 export const StatisticListStyled = styled.ul`
 display: flex;
-justify-content: space-between;
-/* flex-basis: calc((100% - 100px) / 4); */
+justify-content: space-evenly;
+flex-wrap: wrap;
+
+@media screen and (max-width: 768px) {
+    column-gap: 20px;
+  }
 `;
 
 export const StatisticItemStyled = styled.li`

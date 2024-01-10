@@ -1,10 +1,13 @@
+import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { useFormik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { toggleShowModal } from "../../../redux/modal/modalSlice";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebase/config";
+import { setUser } from "../../../redux/auth/authSlice.js";
 import {
-  AuthTitle,
   BtnEyeStyled,
   ErrorsStyled,
   FormStyled,
@@ -12,16 +15,17 @@ import {
   InputsWrapper,
   LuEyeOffStyled,
   LuEyeStyled,
+  ModalTitle,
   StyledModal,
+  SubmitBtnStyled,
 } from "../LoginForm/LoginForm.styled";
-import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
+import BtnClose from "../../../shared/components/Buttons/BtnClose";
 import InputDefault from "../../../shared/components/InputDefault/InputDefault";
 import {
+  notifyLoginSuccess,
   notifyRegisterError,
-  notifyVerifyEmail,
 } from "../../../shared/NotificationToastify/Toasts";
-import BtnClose from "../../../shared/components/Buttons/BtnClose";
-import { registerUser } from "../../../redux/auth/authThunks";
+import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth/BtnToggleFormAuth";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -50,11 +54,19 @@ const RegisterForm = () => {
     }),
 
     onSubmit: (values) => {
-      dispatch(registerUser(values))
-        .unwrap()
-        .then(() => {
-          notifyVerifyEmail();
-          navigate("/");
+      createUserWithEmailAndPassword(auth, values.email, values.password)
+        // .unwrap()
+        .then(({ user }) => {
+          dispatch(
+            setUser({
+              email: user.email,
+              id: user.uid,
+              token: user.accessToken,
+            })
+          );
+          notifyLoginSuccess();
+          navigate("/teachers");
+          dispatch(toggleShowModal(""));
         })
         .catch((error) => {
           notifyRegisterError(error);
@@ -65,7 +77,13 @@ const RegisterForm = () => {
 
   const handleClickBtnClose = () => {
     document.body.classList.remove("no-scroll");
+    dispatch(toggleShowModal(""));
     navigate("/");
+  };
+
+  const handleOpenModal = (e) => {
+    handleClickBtnClose();
+    dispatch(toggleShowModal(e.currentTarget.name));
   };
 
   return (
@@ -73,7 +91,7 @@ const RegisterForm = () => {
       <StyledModal>
         <BtnClose onClick={handleClickBtnClose} />
 
-        <AuthTitle>Sign Up</AuthTitle>
+        <ModalTitle>Sign Up</ModalTitle>
         <FormStyled onSubmit={formik.handleSubmit}>
           <InputsWrapper>
             <InputDefault
@@ -83,8 +101,7 @@ const RegisterForm = () => {
               placeholder="Name"
               // autoComplete="off"
               onChange={formik.handleChange}
-              label="Name" 
-
+              label="Name"
             />
 
             {formik.touched.name && formik.errors.name ? (
@@ -133,8 +150,11 @@ const RegisterForm = () => {
               <ErrorsStyled>{formik.errors.password}</ErrorsStyled>
             ) : null}
           </InputsWrapper>
-          <BtnConfirmAuth type="submit">Sign Up</BtnConfirmAuth>
+          <SubmitBtnStyled type="submit">Sign Up</SubmitBtnStyled>
         </FormStyled>
+        <BtnToggleFormAuth type="button" name="login" onClick={handleOpenModal}>
+          Login
+        </BtnToggleFormAuth>
       </StyledModal>
     </>
   );

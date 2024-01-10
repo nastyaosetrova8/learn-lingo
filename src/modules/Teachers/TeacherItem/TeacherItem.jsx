@@ -1,5 +1,38 @@
 import React, { useState } from "react";
-import { uid } from "react-uid";
+import {
+  AllInfoWrapper,
+  AvatarReviewWrapper,
+  DescStyled,
+  FaStarIconStyled,
+  HeartIconStyled,
+  HeartInFavoriteStyled,
+  ImgBox,
+  ImgWrapper,
+  LevelItemStyled,
+  LevelsListStyled,
+  RatingWrapper,
+  ReadMoreBtnStyled,
+  ReviewItemStyled,
+  ReviewerInfoWrap,
+  ReviewerName,
+  SubtitleDescrLanguage,
+  SubtitleTopStyled,
+  SubtitlesStyled,
+  SubtitlesWrapStyled,
+  TeacherCardWrapper,
+  TeacherNameStyled,
+  ToFavoriteBtn,
+  TopInfoWrapper,
+  TopListWrapper,
+  WrapperListAndHeart,
+  WrapperListMobile,
+} from "./TeacherItemStyled";
+import OnlineIcon from "../../../shared/components/Icons/OnlineIcon/OnlineIcon";
+import { PiBookOpenBold } from "react-icons/pi";
+import MainBtn from "../../../shared/components/MainBtn/MainBtn";
+import { useSelector } from "react-redux";
+import { selectFavorite } from "../../../redux/favorites/favoritesSelectors";
+import { useMediaQuery } from "react-responsive";
 
 const TeacherItem = ({
   name,
@@ -15,72 +48,145 @@ const TeacherItem = ({
   conditions,
   experience,
   id,
-  onReadMore,
   onOpenModal,
-  index,
+  onFavorite,
 }) => {
   const [expandedUserId, setExpandedUserId] = useState(null);
+  const isFavorite = useSelector(selectFavorite);
+  const isMobile = useMediaQuery({ query: "(max-width: 1240px)" });
 
   const generateReviewsItems = () => {
     return reviews.map((item, index) => (
-      <li key={index}>
-        <div>Avatar</div>
-        <p>{item.reviewer_name}</p>
-        <p>{item.reviewer_rating}</p>
+      <ReviewItemStyled key={index}>
+        <ReviewerInfoWrap>
+          <AvatarReviewWrapper>
+            <img src={item.avatar_rev} alt={item.reviewer_name} />
+          </AvatarReviewWrapper>
+          <div>
+            <ReviewerName>{item.reviewer_name}</ReviewerName>
+            <RatingWrapper>
+              <FaStarIconStyled />
+              <p>{item.reviewer_rating.toFixed(1)}</p>
+            </RatingWrapper>
+          </div>
+        </ReviewerInfoWrap>
         <p>{item.comment}</p>
-      </li>
+      </ReviewItemStyled>
     ));
   };
 
   const generateLevelItems = () => {
     return levels.map((item, index) => (
-      <li key={index}>
+      <LevelItemStyled key={index}>
         <p>{item}</p>
-      </li>
+      </LevelItemStyled>
     ));
   };
 
   const toggleExpandedUser = (id) => {
-    // setExpandedUserId((prevId) => (prevId === id ? null : id));
     setExpandedUserId(id);
   };
 
   return (
-    <div>
-      <div>{avatar_url}</div>
-      <p>Languages</p>
-      <ul>
-        <li>Lessons online</li>
-        <li>Lessons done: {lessons_done}</li>
-        <li>Rating: {rating}</li>
-        <li>Price / 1 hour: {price_per_hour}&#128178;</li>
-      </ul>
+    <TeacherCardWrapper>
+      <ImgBox>
+        <ImgWrapper>
+          <img src={avatar_url} alt={name} />
+        </ImgWrapper>
+        <OnlineIcon />
+      </ImgBox>
+      <AllInfoWrapper>
+        <TopInfoWrapper>
+          <SubtitleTopStyled>Languages</SubtitleTopStyled>
+          {!isMobile && (
+            <WrapperListAndHeart>
+              <TopListWrapper>
+                <li>
+                  <PiBookOpenBold /> Lessons online
+                </li>
+                <li>Lessons done: {lessons_done}</li>
+                <li>
+                  <FaStarIconStyled /> Rating: {rating}
+                </li>
+                <li>
+                  Price / 1 hour: <span>{price_per_hour}$</span>
+                </li>
+              </TopListWrapper>
+            </WrapperListAndHeart>
+          )}
+        </TopInfoWrapper>
 
-      <h2>
-        {name}
-        {surname}
-      </h2>
-      <p>Speaks: {languages}</p>
-      <p>Lesson Info: {lesson_info}</p>
-      <p>Conditions: {conditions}</p>
+        <ToFavoriteBtn onClick={onFavorite}>
+          {isFavorite.some((item) => item.id === id) ? (
+            <HeartInFavoriteStyled />
+          ) : (
+            <HeartIconStyled />
+          )}
+        </ToFavoriteBtn>
 
-      {!expandedUserId && (
-        <button type="button" onClick={() => toggleExpandedUser(id)}>
-          Read more
-        </button>
-      )}
-      {expandedUserId === id && (
-        <>
-          <p>{experience}</p>
-          <ul>{generateReviewsItems()}</ul>
+        <TeacherNameStyled>
+          {name} {surname}
+        </TeacherNameStyled>
+        {isMobile && (
+          <WrapperListMobile>
+            <TopListWrapper>
+              <li>
+                <PiBookOpenBold /> Lessons online
+              </li>
+              <li>Lessons done: {lessons_done}</li>
+              <li>
+                <FaStarIconStyled /> Rating: {rating}
+              </li>
+              <li>
+                Price / 1 hour: <span>{price_per_hour}$</span>
+              </li>
+            </TopListWrapper>
+          </WrapperListMobile>
+        )}
 
-          <button type="button" id={id} onClick={onOpenModal}>
+        <SubtitlesWrapStyled>
+          <SubtitlesStyled>
+            Speaks:
+            <SubtitleDescrLanguage>
+              {languages.join(", ")}
+            </SubtitleDescrLanguage>
+          </SubtitlesStyled>
+          <SubtitlesStyled>
+            Lesson Info: <span>{lesson_info}</span>
+          </SubtitlesStyled>
+          <SubtitlesStyled>
+            Conditions: <span>{conditions}</span>
+          </SubtitlesStyled>
+        </SubtitlesWrapStyled>
+
+        {!expandedUserId && (
+          <ReadMoreBtnStyled
+            type="button"
+            onClick={() => toggleExpandedUser(id)}
+          >
+            Read more
+          </ReadMoreBtnStyled>
+        )}
+        {expandedUserId === id && (
+          <>
+            <DescStyled>{experience}</DescStyled>
+            <ul>{generateReviewsItems()}</ul>
+          </>
+        )}
+        <LevelsListStyled>{generateLevelItems()}</LevelsListStyled>
+
+        {expandedUserId === id && (
+          <MainBtn
+            type="button"
+            id={id}
+            onClick={onOpenModal}
+            name="bookingLesson"
+          >
             Book trial lesson
-          </button>
-        </>
-      )}
-      <ul>{generateLevelItems()}</ul>
-    </div>
+          </MainBtn>
+        )}
+      </AllInfoWrapper>
+    </TeacherCardWrapper>
   );
 };
 

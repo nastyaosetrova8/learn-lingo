@@ -7,6 +7,8 @@
     --main-text-color: #121417;
     --second-text-color: #8A8A89;
     --text-color-70: #121417b3;
+    --text-color-10: #1214171a;
+    --grey-color: #12141733;
 
     /* colors */
     --yellow-color: #F4C550;
@@ -18,4 +20,6 @@
     --light-blue-color: #BFD6EA;
     --red-color: #E0A39A;
     --light-red-color: #F2C0BD;
+    --yellow-bright: #FFC531;
+    --green-bright: #38CD3E;
 }

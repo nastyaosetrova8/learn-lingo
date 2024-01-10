@@ -5,24 +5,24 @@ export const ToastContainerStyled = styled(ToastContainer)`
   width: 400px;
 
   .Toastify__toast-container {
-    background: var(--green-color);
+    background: var(--light-green-color);
   }
 
   .Toastify__toast--success {
-    background: var(--green-color);
+    background: var(--light-green-color);
   }
 
   .Toastify__toast--error {
-    background: var(--green-color);
+    background: var(--light-green-color);
   }
 
   .Toastify__toast--info {
-    background: var(--green-color);
+    background: var(--light-green-color);
   }
 
   .Toastify__toast-body {
     width: 400px;
-    height: 120px;
+    height: 80px;
     font-size: 22px;
     text-align: center;
     color: var(--main-text-color);

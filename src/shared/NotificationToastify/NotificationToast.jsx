@@ -1,12 +1,12 @@
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainerStyled } from './Notification.styled';
+import { ToastContainerStyled } from './NotificationToast.styled';
 
- const Notification = () => {
+ const NotificationToast = () => {
     return (
         <ToastContainerStyled
         theme="dark"
-        position="top-right"
-        autoClose={1000}
+        position="bottom-left"
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -18,4 +18,4 @@ import { ToastContainerStyled } from './Notification.styled';
     );
 }
 
-export default Notification;
+export default NotificationToast;

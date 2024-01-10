@@ -1,19 +1,6 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// import { teachersReducer } from './teachers/teachersSlice';
-// import { favoriteReducer } from './favorites/favoriteSlice';
-
-
-// export const store = configureStore({
-//   reducer: {
-//     adverts: advertsReducer,
-//     favorite: favoriteReducer,
-//   },
-// });
-
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -27,6 +14,8 @@ import {
 // import { teachersReducer } from './teachers/teachersSlice';
 // import { favoriteReducer } from './favorites/favoriteSlice';
 import { authReducer } from './auth/authSlice.js';
+import { modalReducer } from './modal/modalSlice.js';
+import { favoriteReducer } from './favorites/favoritesSlise.js';
 
 // const userPersistConfig = {
 //   key: 'user',
@@ -39,8 +28,9 @@ export const store = configureStore({
     // user: persistReducer(userPersistConfig, userReducer),
     // root: rootReducer,
     auth: authReducer,
+    modal: modalReducer,
     // teachers: teachersReducer,
-    // favorite: favoriteReducer,
+    favorite: favoriteReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

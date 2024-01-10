@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from "react";
-// import firebase from "firebase/app";
 import "firebase/database";
 import { db } from "../../../firebase/config";
 import TeacherItem from "../TeacherItem/TeacherItem";
-import { TeacherListStyled } from "./TeacherListStyled";
-import { getDatabase, ref, child, get, off } from "firebase/database";
-import { uid } from "react-uid";
+import { TeacherListStyled, TeacherPageStyled } from "./TeacherListStyled";
+import { ref, child, get } from "firebase/database";
+import MainBtn from "../../../shared/components/MainBtn/MainBtn";
+import { useDispatch } from "react-redux";
+import {
+  chosenTeacherId,
+  toggleShowModal,
+} from "../../../redux/modal/modalSlice";
+import { toggleFavorite } from "../../../redux/favorites/favoritesSlise";
+import useAuth from "../../../hooks/useAuth";
+import { notifyFavoriteReject } from "../../../shared/NotificationToastify/Toasts";
 
 const TeacherList = () => {
   const [teachers, setTeachers] = useState([]);
   const [visibleCart, setVisibleCart] = useState(4);
+  const dispatch = useDispatch();
+  const { isAuth } = useAuth();
 
   const dbRef = ref(db);
 
   useEffect(() => {
-    // ==========================
-    // onValue(ref(db), (snapshot) => {
-    //     const data = snapshot.val();
-    //     if (data !== null) {
-    //         Object.values(data).map((teachers) => {
-    //             setTeachers((oldArray) => [...oldArray, teachers])
-    //         })
-    //     }
-    // })
-    // ==========================
-
     const fetchData = async () => {
       get(child(dbRef, `teachers/`))
         .then((snapshot) => {
-          // `teachers/${teachersId}`
           if (snapshot.exists()) {
             setTeachers(snapshot.val());
           } else {
@@ -38,44 +35,50 @@ const TeacherList = () => {
         .catch((error) => {
           console.error(error);
         });
-
-      // // const database = firebase.database();
-      // const teachersRef = db.ref('teachers');
-      // // const teachersRef = database.ref('teachers');
-
-      // teachersRef.on('value', (snapshot) => {
-      //   const data = snapshot.val();
-      //   const teachersArray = Object.values(data || {});
-      //   setTeachers(teachersArray);
-      // });
     };
 
     fetchData();
-
-    //   return () => {
-    //     off(dbRef);
-    //   }
   }, [dbRef]);
+
+  const handleOpenModal = (e) => {
+    const currentTeacher = teachers.find(
+      (teacher) => teacher.id === Number(e.currentTarget.id)
+    );
+    dispatch(toggleShowModal(e.currentTarget.name));
+    dispatch(chosenTeacherId(currentTeacher));
+  };
+
+  const handleToggleFavorite = (teacher) => {
+    if (isAuth) {
+      dispatch(toggleFavorite(teacher));
+    }
+    notifyFavoriteReject();
+  };
 
   const handleLoadMore = () => {
     setVisibleCart((prev) => prev + 4);
   };
 
-  const showLoadMoreBtn = Math.ceil(teachers.length / visibleCart);
   return (
-    <>
+    <TeacherPageStyled>
       <TeacherListStyled>
         {teachers.slice(0, visibleCart).map((teacher) => {
-          return <TeacherItem key={teacher.id} {...teacher} />;
+          return (
+            <TeacherItem
+              key={teacher.id}
+              {...teacher}
+              onOpenModal={handleOpenModal}
+              onFavorite={() => handleToggleFavorite(teacher)}
+            />
+          );
         })}
       </TeacherListStyled>
-
-      {visibleCart.length < teachers.length && (
-        <button type="button" onClick={handleLoadMore}>
+      {visibleCart < teachers.length && (
+        <MainBtn type="button" onClick={handleLoadMore}>
           Load more
-        </button>
+        </MainBtn>
       )}
-    </>
+    </TeacherPageStyled>
   );
 };
 

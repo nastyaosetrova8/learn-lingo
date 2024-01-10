@@ -1,50 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { notifyLoginSuccess, notifyRegisterError } from '../../shared/NotificationToastify/Toasts';
-import { logOutUser, loginUser, registerUser } from './authThunks';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userId: null,
-  nickname: null,
+  name: null,
   email: null,
-  stateChange: false,
+  id: null,
+  token: null,
 };
-
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    authStateChanged: (state, { payload }) => ({
-      ...state,
-      userId: payload.userId,
-      nickname: payload.nickname,
-      email: payload.email,
-      stateChange: true,
-    }),
+    setUser(state, { payload }) {
+      state.name = payload.name;
+      state.email = payload.email;
+      state.id = payload.id;
+      state.token = payload.token;
+    },
+    removeUser(state) {
+      state.name = null;
+      state.email = null;
+      state.id = null;
+      state.token = null;
+    },
   },
-  extraReducers: builder =>
-    builder
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
-        state.userId = payload.uid;
-        state.nickname = payload.displayName;
-        state.email = payload.mail;
-      })
-      .addCase(registerUser.rejected, (error) => {
-        notifyRegisterError(error);
-      })
-      .addCase(loginUser.fulfilled, (data) => {
-        notifyLoginSuccess(data)
-      })
-      .addCase(loginUser.rejected, (error) => {
-        notifyRegisterError(error);
-      })
-      .addCase(logOutUser.fulfilled, state => {
-        state.userId = null;
-        state.nickname = null;
-        state.email = null;
-        state.stateChange = false;
-      }),
 });
 
+export const { setUser, removeUser } = authSlice.actions;
 export const authReducer = authSlice.reducer;
-export const onStateChange = authSlice.actions.authStateChanged;
