@@ -26,21 +26,14 @@ gap: 16px;
 `;
 
 export const AmountStyled = styled.p`
-/* color: #121417; */
-/* font-family: Roboto; */
 font-size: 28px;
-/* font-style: normal; */
-/* font-weight: 500; */
 line-height: 1.14;
 `;
 
 export const TutorStyled = styled.p`
-/* display: flex;
-flex-wrap: wrap; */
 width: 96px;
 color: var(--text-color-70);
 font-size: 14px;
-/* font-style: normal; */
 font-weight: 400;
 line-height: 1.28;
 `;

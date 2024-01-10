@@ -107,6 +107,3 @@ export const BookBtnStyled = styled.button`
   }
 `;
 
-// export const StyledModal = styled.div`
-
-// `;
