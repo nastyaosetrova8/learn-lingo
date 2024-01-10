@@ -14,10 +14,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <img width="931" alt="Знімок екрана 2024-01-11 о 01 21 12" src="https://github.com/nastyaosetrova8/learn-lingo/assets/126395277/49796fda-b598-4f82-b1cf-1dfa25521450">
 
 ### User registration occurs when a modal window is opened.
-<img width="465" alt="Знімок екрана 2024-01-11 о 01 49 27" src="https://github.com/nastyaosetrova8/learn-lingo/assets/126395277/c46b431a-9ff8-4008-b47a-259f727f5342">
+<img width="931" alt="Знімок екрана 2024-01-11 о 01 21 28" src="https://github.com/nastyaosetrova8/learn-lingo/assets/126395277/baf35ee6-74f8-418f-90ff-4999a60210bf">
 
 ### The application has a responsive layout adapted for tablets and mobile devices.
-<img width="931" alt="Знімок екрана 2024-01-11 о 01 21 28" src="https://github.com/nastyaosetrova8/learn-lingo/assets/126395277/baf35ee6-74f8-418f-90ff-4999a60210bf">
+<img width="465" alt="Знімок екрана 2024-01-11 о 01 49 27" src="https://github.com/nastyaosetrova8/learn-lingo/assets/126395277/c46b431a-9ff8-4008-b47a-259f727f5342">
 
 
 
