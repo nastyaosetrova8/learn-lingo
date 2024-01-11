@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/learn-lingo/static/css/main.a462ac85.css",
-    "main.js": "/learn-lingo/static/js/main.b789c5f1.js",
-    "static/js/356.5ac2c84b.chunk.js": "/learn-lingo/static/js/356.5ac2c84b.chunk.js",
-    "static/js/540.d25f8ceb.chunk.js": "/learn-lingo/static/js/540.d25f8ceb.chunk.js",
-    "static/js/584.29f7d3a1.chunk.js": "/learn-lingo/static/js/584.29f7d3a1.chunk.js",
+    "main.js": "/learn-lingo/static/js/main.1b9718d8.js",
+    "static/js/356.645b4773.chunk.js": "/learn-lingo/static/js/356.645b4773.chunk.js",
+    "static/js/540.62f695a7.chunk.js": "/learn-lingo/static/js/540.62f695a7.chunk.js",
+    "static/js/584.178691f9.chunk.js": "/learn-lingo/static/js/584.178691f9.chunk.js",
     "static/js/787.7cd7a635.chunk.js": "/learn-lingo/static/js/787.7cd7a635.chunk.js",
     "static/js/681.32358867.chunk.js": "/learn-lingo/static/js/681.32358867.chunk.js",
     "static/js/126.f4129b47.chunk.js": "/learn-lingo/static/js/126.f4129b47.chunk.js",
     "static/media/homeImg.jpg": "/learn-lingo/static/media/homeImg.9234d403fab9286212d1.jpg",
     "index.html": "/learn-lingo/index.html",
     "main.a462ac85.css.map": "/learn-lingo/static/css/main.a462ac85.css.map",
-    "main.b789c5f1.js.map": "/learn-lingo/static/js/main.b789c5f1.js.map",
-    "356.5ac2c84b.chunk.js.map": "/learn-lingo/static/js/356.5ac2c84b.chunk.js.map",
-    "540.d25f8ceb.chunk.js.map": "/learn-lingo/static/js/540.d25f8ceb.chunk.js.map",
-    "584.29f7d3a1.chunk.js.map": "/learn-lingo/static/js/584.29f7d3a1.chunk.js.map",
+    "main.1b9718d8.js.map": "/learn-lingo/static/js/main.1b9718d8.js.map",
+    "356.645b4773.chunk.js.map": "/learn-lingo/static/js/356.645b4773.chunk.js.map",
+    "540.62f695a7.chunk.js.map": "/learn-lingo/static/js/540.62f695a7.chunk.js.map",
+    "584.178691f9.chunk.js.map": "/learn-lingo/static/js/584.178691f9.chunk.js.map",
     "787.7cd7a635.chunk.js.map": "/learn-lingo/static/js/787.7cd7a635.chunk.js.map",
     "681.32358867.chunk.js.map": "/learn-lingo/static/js/681.32358867.chunk.js.map",
     "126.f4129b47.chunk.js.map": "/learn-lingo/static/js/126.f4129b47.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a462ac85.css",
-    "static/js/main.b789c5f1.js"
+    "static/js/main.1b9718d8.js"
   ]
 }
