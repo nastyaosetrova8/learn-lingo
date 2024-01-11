@@ -33,6 +33,8 @@ import MainBtn from "../../../shared/components/MainBtn/MainBtn";
 import { useSelector } from "react-redux";
 import { selectFavorite } from "../../../redux/favorites/favoritesSelectors";
 import { useMediaQuery } from "react-responsive";
+import { notifyFavoriteReject } from "../../../shared/NotificationToastify/Toasts";
+import useAuth from "../../../hooks/useAuth";
 
 const TeacherItem = ({
   name,
@@ -54,6 +56,7 @@ const TeacherItem = ({
   const [expandedUserId, setExpandedUserId] = useState(null);
   const isFavorite = useSelector(selectFavorite);
   const isMobile = useMediaQuery({ query: "(max-width: 1240px)" });
+  const { isAuth } = useAuth();
 
   const generateReviewsItems = () => {
     return reviews.map((item, index) => (
@@ -87,6 +90,14 @@ const TeacherItem = ({
     setExpandedUserId(id);
   };
 
+  const handleFavoriteClick = () => {
+    if (isAuth) {
+      onFavorite();
+    } else {
+      notifyFavoriteReject();
+    }
+  };
+
   return (
     <TeacherCardWrapper>
       <ImgBox>
@@ -116,14 +127,19 @@ const TeacherItem = ({
           )}
         </TopInfoWrapper>
 
-        <ToFavoriteBtn onClick={onFavorite}>
-          {isFavorite.some((item) => item.id === id) ? (
-            <HeartInFavoriteStyled />
-          ) : (
+        {isAuth ? (
+          <ToFavoriteBtn onClick={handleFavoriteClick}>
+            {isFavorite.some((item) => item.id === id) ? (
+              <HeartInFavoriteStyled />
+            ) : (
+              <HeartIconStyled />
+            )}
+          </ToFavoriteBtn>
+        ) : (
+          <ToFavoriteBtn onClick={handleFavoriteClick}>
             <HeartIconStyled />
-          )}
-        </ToFavoriteBtn>
-
+          </ToFavoriteBtn>
+        )}
         <TeacherNameStyled>
           {name} {surname}
         </TeacherNameStyled>

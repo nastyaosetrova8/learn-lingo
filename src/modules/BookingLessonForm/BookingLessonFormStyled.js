@@ -80,7 +80,9 @@ export const InputsWrapper = styled.div`
 `;
 
 export const ErrorsStyled = styled.div`
-  margin: 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: 12px;
   line-height: 1.1;
   color: var(--red-color);

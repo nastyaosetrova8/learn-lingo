@@ -2,12 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleShowModal } from "../../redux/modal/modalSlice";
 import BtnClose from "../../shared/components/Buttons/BtnClose";
-import // ErrorsStyled,
-// FormStyled,
-// InputsWrapper,
-// ModalTitle,
-// StyledModal,
-"../authForms/LoginForm/LoginForm.styled";
 import InputDefault from "../../shared/components/InputDefault/InputDefault";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -25,7 +19,6 @@ import {
   TeacherAvatarWrapper,
   TeacherInfoWrap,
   TeacherSubtitle,
-  TopInfoStyled,
 } from "./BookingLessonFormStyled";
 
 const BookingLessonForm = () => {
@@ -133,7 +126,7 @@ const BookingLessonForm = () => {
             label="PhoneNumber"
           />
           {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-            <ErrorsStyled>{formik.errors.phoneNumber}</ErrorsStyled>
+            <ErrorsStyled>{formik.errors.phoneNumber}. <p>Please enter accoding to example: 0938768787</p></ErrorsStyled>
           ) : null}
         </InputsWrapper>
         <BookBtnStyled type="submit">Book</BookBtnStyled>

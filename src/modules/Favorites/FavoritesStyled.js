@@ -1,21 +1,35 @@
-import styled from 'styled-components';
-import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
+import styled from "styled-components";
+import { BsFillArrowLeftSquareFill } from "react-icons/bs";
 
-export const FavoriteTitleStyled = styled.h1`
-  margin-top: 50px;
-  font-family: 'Montserrat';
-  font-size: 32px;
-  line-height: 1.5;
-  font-weight: 600;
-  text-align: center;
-  color: var(--main-text-color);
+export const FavoritesPageStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 96px 128px;
+  background-color: var(--second-background);
+
+  @media screen and (max-width: 768px) {
+    padding: 46px 78px;
+  }
+`;
+
+export const EmptyPageStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 96px 128px;
+  background-color: var(--second-background);
+
+  @media screen and (max-width: 768px) {
+    padding: 46px 78px;
+  }
 `;
 
 export const FavoriteEmptyText = styled.p`
-  font-family: 'Montserrat';
-  font-size: 18px;
+  font-size: 24px;
   line-height: 1.5;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   color: var(--main-text-color);
 `;
@@ -27,7 +41,9 @@ export const WrapperLinkStyled = styled.div`
   margin-top: 50px;
 `;
 
-export const BsFillArrowLeftSquareFillStyled = styled(BsFillArrowLeftSquareFill)`
+export const BsFillArrowLeftSquareFillStyled = styled(
+  BsFillArrowLeftSquareFill
+)`
   margin-right: 8px;
   width: 18px;
   height: 18px;
@@ -38,11 +54,10 @@ export const BsFillArrowLeftSquareFillStyled = styled(BsFillArrowLeftSquareFill)
   }
 `;
 
-export const FindStyled = styled.span`
-  font-family: 'Montserrat';
-  font-size: 18px;
+export const FindStyled = styled.p`
+  font-size: 22px;
   line-height: 1.5;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   color: var(--green-color);
   &:hover,
@@ -54,14 +69,15 @@ export const FindStyled = styled.span`
 export const RemoveAllBtnStyled = styled.button`
   display: block;
   margin: 50px auto 150px;
-  font-family: 'Manrope';
   font-size: 16px;
   line-height: 1.5;
   font-weight: 500;
   background-color: transparent;
-  color: var(--green-color);
+  text-decoration: underline;
+  color: var(--main-text-color);
   &:hover,
   &:focus {
     color: var(--text-color-70);
+    text-decoration-thickness: 4px;
   }
 `;

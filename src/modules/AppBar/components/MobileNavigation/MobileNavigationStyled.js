@@ -40,8 +40,6 @@ export const NavLinkStyled = styled(NavLink)`
        height: 8px;
        background-color: var(--second-background);
        border-radius: 50%;
-
-       left: 50%;
        margin-bottom: -8px;
        bottom: 0;
      }

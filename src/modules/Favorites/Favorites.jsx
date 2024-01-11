@@ -1,14 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   BsFillArrowLeftSquareFillStyled,
+  EmptyPageStyled,
   FavoriteEmptyText,
   FavoriteTitleStyled,
+  FavoritesPageStyled,
   FindStyled,
   RemoveAllBtnStyled,
   WrapperLinkStyled,
 } from "./FavoritesStyled";
 import { Link } from "react-router-dom";
-import { TeacherPageStyled } from "../Teachers/TecherList/TeacherListStyled";
+import {
+  TeacherListStyled,
+  TeacherPageStyled,
+} from "../Teachers/TecherList/TeacherListStyled";
 import TeacherItem from "../Teachers/TeacherItem/TeacherItem";
 import {
   removeAllFavorites,
@@ -39,21 +44,20 @@ const Favorites = () => {
   };
 
   return (
-    <>
-      <FavoriteTitleStyled>Favorite Teachers</FavoriteTitleStyled>
+    <FavoritesPageStyled>
       {favorites.favoriteItems.length === 0 ? (
-        <div>
+        <EmptyPageStyled>
           <FavoriteEmptyText>This page is empty</FavoriteEmptyText>
-          <WrapperLinkStyled>
-            <Link to="/teachers">
+          <Link to="/teachers">
+            <WrapperLinkStyled>
               <BsFillArrowLeftSquareFillStyled />
               <FindStyled>Search for a teacher</FindStyled>
-            </Link>
-          </WrapperLinkStyled>
-        </div>
+            </WrapperLinkStyled>
+          </Link>
+        </EmptyPageStyled>
       ) : (
         <div>
-          <TeacherPageStyled>
+          <TeacherListStyled>
             {favorites.favoriteItems?.map((favoriteItem) => {
               return (
                 <TeacherItem
@@ -64,18 +68,20 @@ const Favorites = () => {
                 />
               );
             })}
-          </TeacherPageStyled>
+          </TeacherListStyled>
           <div>
-            <RemoveAllBtnStyled
-              type="button"
-              onClick={() => handleRemoveAllFavorites()}
-            >
-              Remove all
-            </RemoveAllBtnStyled>
+            {favorites.favoriteItems.length > 1 && (
+              <RemoveAllBtnStyled
+                type="button"
+                onClick={() => handleRemoveAllFavorites()}
+              >
+                Remove all
+              </RemoveAllBtnStyled>
+            )}
           </div>
         </div>
       )}
-    </>
+    </FavoritesPageStyled>
   );
 };
 

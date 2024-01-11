@@ -11,7 +11,7 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 20px 128px 0;
+  padding: 20px 128px;
 `;
 
 export const LogoStyled = styled(NavLink)`

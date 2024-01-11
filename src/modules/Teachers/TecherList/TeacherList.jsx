@@ -48,12 +48,12 @@ const TeacherList = () => {
     dispatch(chosenTeacherId(currentTeacher));
   };
 
-  const handleToggleFavorite = (teacher) => {
-    if (isAuth) {
-      dispatch(toggleFavorite(teacher));
-    }
-    notifyFavoriteReject();
-  };
+  // const handleToggleFavorite = (teacher) => {
+  //   if (isAuth) {
+  //     dispatch(toggleFavorite(teacher));
+  //   }
+  //   notifyFavoriteReject();
+  // };
 
   const handleLoadMore = () => {
     setVisibleCart((prev) => prev + 4);
@@ -68,7 +68,8 @@ const TeacherList = () => {
               key={teacher.id}
               {...teacher}
               onOpenModal={handleOpenModal}
-              onFavorite={() => handleToggleFavorite(teacher)}
+              // onFavorite={() => handleToggleFavorite(teacher)}
+              onFavorite={() => dispatch(toggleFavorite(teacher))}
             />
           );
         })}

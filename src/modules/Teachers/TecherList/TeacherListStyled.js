@@ -5,6 +5,7 @@ export const TeacherPageStyled = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 96px 128px;
+  min-height: 100vh;
   background-color: var(--second-background);
 
   @media screen and (max-width: 768px) {

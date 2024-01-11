@@ -1,4 +1,3 @@
-import { uid } from "react-uid";
 import { AmountStyled, StatisticItemStyled, StatisticListStyled, StatisticSectionStyled, TutorStyled } from "./HomeStatisticSectionStyled";
 
 const HomeStatisticSection = () => {
