@@ -11,13 +11,11 @@ import {
   toggleShowModal,
 } from "../../../redux/modal/modalSlice";
 import { toggleFavorite } from "../../../redux/favorites/favoritesSlise";
-import useAuth from "../../../hooks/useAuth";
 
 const TeacherList = () => {
   const [teachers, setTeachers] = useState([]);
   const [visibleCart, setVisibleCart] = useState(4);
   const dispatch = useDispatch();
-  const { isAuth } = useAuth();
 
   const dbRef = ref(db);
 
@@ -46,13 +44,6 @@ const TeacherList = () => {
     dispatch(toggleShowModal(e.currentTarget.name));
     dispatch(chosenTeacherId(currentTeacher));
   };
-
-  // const handleToggleFavorite = (teacher) => {
-  //   if (isAuth) {
-  //     dispatch(toggleFavorite(teacher));
-  //   }
-  //   notifyFavoriteReject();
-  // };
 
   const handleLoadMore = () => {
     setVisibleCart((prev) => prev + 4);
