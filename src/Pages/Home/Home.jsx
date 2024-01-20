@@ -30,7 +30,7 @@ const Home = () => {
         <img src={homeImg} alt="girl with macBook" />
       </ImgHomeWrapStyled>
       </StyledMainWrap>
-      <HomeStatisticSection />
+      <HomeStatisticSection />      
     </StyledHomeContainer>
   );
 };

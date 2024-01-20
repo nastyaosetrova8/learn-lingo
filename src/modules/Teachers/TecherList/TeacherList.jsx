@@ -12,7 +12,6 @@ import {
 } from "../../../redux/modal/modalSlice";
 import { toggleFavorite } from "../../../redux/favorites/favoritesSlise";
 import useAuth from "../../../hooks/useAuth";
-import { notifyFavoriteReject } from "../../../shared/NotificationToastify/Toasts";
 
 const TeacherList = () => {
   const [teachers, setTeachers] = useState([]);

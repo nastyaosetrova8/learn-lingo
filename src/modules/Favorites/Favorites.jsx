@@ -3,7 +3,6 @@ import {
   BsFillArrowLeftSquareFillStyled,
   EmptyPageStyled,
   FavoriteEmptyText,
-  FavoriteTitleStyled,
   FavoritesPageStyled,
   FindStyled,
   RemoveAllBtnStyled,
@@ -12,7 +11,6 @@ import {
 import { Link } from "react-router-dom";
 import {
   TeacherListStyled,
-  TeacherPageStyled,
 } from "../Teachers/TecherList/TeacherListStyled";
 import TeacherItem from "../Teachers/TeacherItem/TeacherItem";
 import {
